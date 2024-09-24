@@ -1,0 +1,147 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef; /* Color de fondo más suave */
+    color: #343a40; /* Color de texto más oscuro */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 40px auto;
+}
+
+.title {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa; /* Alternar color de filas */
+}
+
+.status-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 2px; /* Espaciado entre botones */
+    transition: background-color 0.3s;
+}
+
+.red {
+    background-color: #dc3545; /* Rojo para No Revisado */
+}
+
+.yellow {
+    background-color: #ffc107; /* Amarillo para En Revisión */
+}
+
+.green {
+    background-color: #28a745; /* Verde para Reparado */
+}
+
+.red:hover {
+    background-color: #c82333;
+}
+
+.yellow:hover {
+    background-color: #d39e00;
+}
+
+.green:hover {
+    background-color: #218838;
+}
+
+.edit-btn, .delete-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 2px; /* Espaciado entre botones */
+    transition: background-color 0.3s;
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.back-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0; /* Margen superior e inferior */
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.home-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto; /* Centrado en la página */
+    transition: background-color 0.3s;
+}
+
+.home-button:hover {
+    background-color: #0056b3; /* Cambia a azul más oscuro al pasar el mouse */
+}

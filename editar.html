@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Ticket</title>
+    <link rel="stylesheet" href="styles3.css"> <!-- Vincula el archivo CSS externo -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía moderna */
+            background-color: #f4f7fa; /* Color de fondo claro */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff; /* Color blanco para el formulario */
+            padding: 30px; /* Espaciado interno */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        }
+
+        .title-box {
+            text-align: center;
+            font-size: 28px; /* Tamaño del título aumentado */
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #007bff; /* Color azul */
+        }
+
+        h2 {
+            text-align: center;
+            color: #343a40; /* Color de texto gris oscuro */
+            margin-bottom: 20px; /* Espaciado inferior */
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 6px; /* Espaciado */
+            font-weight: bold;
+            font-size: 16px; /* Tamaño de fuente */
+            color: #495057; /* Color del texto de etiquetas */
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px; /* Padding aumentado */
+            border: 1px solid #ced4da; /* Color del borde */
+            border-radius: 5px; /* Bordes redondeados */
+            margin-bottom: 15px;
+            font-size: 16px;
+            transition: border-color 0.3s; /* Transición suave al cambiar de color */
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff; /* Cambiar borde al enfocar */
+            outline: none; /* Sin contorno */
+        }
+
+        button {
+            background-color: #007bff; /* Color azul */
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%; /* Botones ocupan el ancho completo */
+            transition: background-color 0.3s; /* Transición suave al cambiar de color */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Color azul oscuro al pasar el mouse */
+        }
+
+        .back-button {
+            margin-top: 20px;
+            font-weight: bold; /* Texto en negrita */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-box">CesarCell</div> <!-- Título dentro del formulario -->
+        <h2>Editar Ticket</h2>
+        <form id="edit-ticket-form">
+            <label for="customer-name">Nombre del Cliente:</label>
+            <input type="text" id="customer-name" name="customer-name" required>
+
+            <label for="device-model">Modelo del Dispositivo:</label>
+            <input type="text" id="device-model" name="device-model" required>
+
+            <label for="device-imei">Número IMEI:</label>
+            <input type="text" id="device-imei" name="device-imei" required>
+
+            <label for="issue-description">Descripción del Problema:</label>
+            <textarea id="issue-description" name="issue-description" rows="4" required></textarea>
+
+            <button type="submit">Guardar Cambios</button>
+        </form>
+
+        <button class="back-button" onclick="window.history.back();">Volver</button>
+    </div>
+
+    <script>
+        // Obtener el índice del ticket a editar desde el localStorage
+        const ticketIndex = localStorage.getItem('editIndex');
+        const tickets = JSON.parse(localStorage.getItem('tickets'));
+
+        if (ticketIndex !== null) {
+            const ticket = tickets[ticketIndex];
+            document.getElementById('customer-name').value = ticket.customerName;
+            document.getElementById('device-model').value = ticket.deviceModel;
+            document.getElementById('device-imei').value = ticket.deviceImei;
+            document.getElementById('issue-description').value = ticket.issueDescription;
+        }
+
+        document.getElementById('edit-ticket-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Actualizar los datos del ticket
+            tickets[ticketIndex] = {
+                customerName: document.getElementById('customer-name').value,
+                deviceModel: document.getElementById('device-model').value,
+                deviceImei: document.getElementById('device-imei').value,
+                issueDescription: document.getElementById('issue-description').value,
+                date: new Date().toLocaleString() // Actualizar la fecha
+            };
+
+            // Guardar los tickets actualizados en localStorage
+            localStorage.setItem('tickets', JSON.stringify(tickets));
+
+            alert('Ticket actualizado con éxito!');
+            window.location.href = 'registros.html'; // Redirigir a la página de registros
+        });
+    </script>
+</body>
+</html>
