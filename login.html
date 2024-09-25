@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="styles4.css"> <!-- Enlace al archivo CSS externo -->
 </head>
 <body>
-    <div class="login-container">
-        <h2>Inicio de Sesión</h2>
-        <form id="loginForm">
-            <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
-            <input type="password" id="password" name="password" placeholder="Contraseña" required>
-            <button type="submit">Iniciar Sesión</button>
-            <div class="error" id="errorMessage"></div>
-        </form>
+    <div class="login-background">
+        <div class="login-container">
+            <h2>Inicio de Sesión</h2>
+            <form id="loginForm">
+                <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+                <div class="error" id="errorMessage"></div>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -24,9 +26,9 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Aquí puedes agregar la lógica de autenticación.
+            // Lógica de autenticación
             if (username === "CESARFRP14" && password === "Bypass1420") {
-                window.location.href = "registros.html"; // Redirige a la página de registros
+                window.location.href = "index.html"; // Redirige a la página principal
             } else {
                 document.getElementById('errorMessage').textContent = "Usuario o contraseña incorrectos";
             }
