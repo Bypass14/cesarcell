@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CesarCell</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <form id="ticket-form">
+            <div class="title-box">CesarCell</div> <!-- Título dentro del formulario -->
+            <label for="customer-name">Nombre del Cliente:</label>
+            <input type="text" id="customer-name" name="customer-name" required>
+
+            <label for="device-model">Modelo del Dispositivo:</label>
+            <input type="text" id="device-model" name="device-model" required>
+
+            <label for="device-imei">Número IMEI:</label>
+            <input type="text" id="device-imei" name="device-imei" required>
+
+            <label for="issue-description">Descripción del Problema:</label>
+            <textarea id="issue-description" name="issue-description" rows="4" required></textarea>
+
+            <button type="submit">Registrar Cliente</button>
+            <button id="show-records" type="button">Mostrar Clientes</button>
+        </form>
+    </div>
+
+    <script>
+        // Función para validar el IMEI
+        function validarIMEI(imei) {
+            return imei.length === 15 && /^[0-9]+$/.test(imei);
+        }
+
+        document.getElementById('ticket-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let customerName = document.getElementById('customer-name').value;
+            let deviceModel = document.getElementById('device-model').value;
+            let deviceImei = document.getElementById('device-imei').value;
+            let issueDescription = document.getElementById('issue-description').value;
+
+             // Validación del IMEI
+             if (!validarIMEI(deviceImei)) {
+                alert('El número IMEI debe tener 15 dígitos numéricos.');
+                return;
+            }
+
+            let ticket = {
+                customerName: customerName,
+                deviceModel: deviceModel,
+                deviceImei: deviceImei,
+                issueDescription: issueDescription,
+                date: new Date().toLocaleString() // Agregar fecha
+            };
+
+            let tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+            tickets.push(ticket);
+            localStorage.setItem('tickets', JSON.stringify(tickets));
+
+            alert('Datos del cliente guardados correctamente!');
+            document.getElementById('ticket-form').reset();
+        });
+
+        document.getElementById('show-records').addEventListener('click', function() {
+            window.location.href = 'registros.html';
+        });
+    </script>
+</body>
+</html>
